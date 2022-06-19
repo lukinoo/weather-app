@@ -2,27 +2,32 @@
   <div class="weather-box">
     <div class="weather-box-item">
       <div class="weather-box-item-date">
+        <p>{{ weather.name }}, {{ weather.country }}</p>
         <p>{{ fullDate }}</p>
       </div>
       <div class="weather-box-item-icon">
-        <img src="../assets/day.svg" alt="weather" />
+        <img src="../assets/cloudy.svg" alt="weather" />
       </div>
       <div class="weather-box-item-info">
-        <h3 class="info">Its cloudy</h3>
-        <div class="celsius">29 <sup>o</sup></div>
+        <h3 class="info">{{ weather.main }}</h3>
+        <div class="celsius">{{ Math.round(weather.temp) }} <sup>o</sup></div>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, PropType } from "vue";
 import { getDate } from "../utils/date";
+import { Weather } from "../types/index";
 
 export default defineComponent({
   name: "WeatherBox",
   props: {
-    type: String,
+    weather: {
+      required: true,
+      type: Object as PropType<Weather>,
+    },
   },
   setup() {
     const fullDate = ref<string>(getDate());
@@ -55,8 +60,9 @@ export default defineComponent({
     border: 1px solid rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(30px);
     .weather-box-item-date {
-      flex: 0.2;
-      .displayFlex();
+      flex: 0.3;
+      .displayFlex(space-around, center);
+      flex-direction: column;
       p {
         font-size: 0.9rem;
         font-weight: 300;

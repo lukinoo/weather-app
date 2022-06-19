@@ -14,7 +14,7 @@
       <label for="name" class="form__label">Search for a city</label>
     </div>
   </div>
-  <WeatherBox />
+  <WeatherBox v-if="typeof weather.main !== 'undefined'" :weather="weather" />
 </template>
 
 <script lang="ts">
@@ -67,7 +67,6 @@ export default defineComponent({
     },
     getResults(results: Weather) {
       this.weather = results;
-      console.log(this.weather);
     },
   },
 });
