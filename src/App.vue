@@ -70,7 +70,7 @@ export default defineComponent({
     },
   },
   mounted() {
-    this.apiKey = process.env.VUE_APP_API_KEY as string;
+    this.apiKey = process.env.VUE_APP_APIKEY as string;
   },
 });
 </script>
