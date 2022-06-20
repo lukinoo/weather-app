@@ -47,7 +47,7 @@ export default defineComponent({
     fetchWeather(e: KeyboardEvent) {
       if (e.key == "Enter" && this.input.trim() !== "") {
         fetch(
-          `https://api.openweathermap.org/data/2.5/weather?q=${this.input}&units=imperial&APPID=${process.env.VUE_APP_API_KEY}`
+          `https://api.openweathermap.org/data/2.5/weather?q=${this.input}&units=imperial&APPID=${this.apiKey}`
         )
           .then((res) => res.json())
           .then((data) => {
