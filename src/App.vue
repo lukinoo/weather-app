@@ -29,7 +29,7 @@ export default defineComponent({
   },
   setup() {
     const input = ref<string>("");
-    const apiKey = ref<string>(process.env.VUE_APP_API_KEY as string);
+    const apiKey = ref<string>("");
     const weather = ref<Weather>({
       name: "",
       country: "",
@@ -68,6 +68,9 @@ export default defineComponent({
     getResults(results: Weather) {
       this.weather = results;
     },
+  },
+  mounted() {
+    this.apiKey = process.env.VUE_APP_API_KEY as string;
   },
 });
 </script>
