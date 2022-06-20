@@ -1,8 +1,10 @@
 <template>
-  <div class="weather-box" v-if="typeof weather.main != 'undefined'">
+  <div class="weather-box">
     <div class="weather-box-item">
       <div class="weather-box-item-date">
-        <p>{{ weather.name }}, {{ weather.country }}</p>
+        <p v-if="weather.name !== ''">
+          {{ weather.name }}, {{ weather.country }}
+        </p>
         <p>{{ fullDate }}</p>
       </div>
       <div class="weather-box-item-icon">
@@ -13,7 +15,9 @@
       </div>
       <div class="weather-box-item-info">
         <h3 class="info">{{ weather.main }}</h3>
-        <div class="celsius">{{ weather.temp }} <sup>o</sup></div>
+        <div class="celsius" v-if="weather.temp !== 0">
+          {{ weather.temp }} <sup>o</sup>
+        </div>
       </div>
     </div>
   </div>

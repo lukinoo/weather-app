@@ -45,7 +45,7 @@ export default defineComponent({
   },
   methods: {
     fetchWeather(e: KeyboardEvent) {
-      if (e.key == "Enter") {
+      if (e.key == "Enter" && this.input.trim() !== "") {
         fetch(
           `https://api.openweathermap.org/data/2.5/weather?q=${this.input}&units=imperial&APPID=${process.env.VUE_APP_API_KEY}`
         )
@@ -86,6 +86,9 @@ export default defineComponent({
     position: relative;
     padding: 15px 0 0;
     width: 35%;
+    @media screen and (max-width: 768px) {
+      width: 80%;
+    }
     .form__field {
       font-family: inherit;
       width: 100%;
