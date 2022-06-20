@@ -14,7 +14,7 @@
       <label for="name" class="form__label">Search for a city</label>
     </div>
   </div>
-  <WeatherBox v-if="typeof weather.main !== 'undefined'" :weather="weather" />
+  <WeatherBox v-if="typeof weather.main != 'undefined'" :weather="weather" />
 </template>
 
 <script lang="ts">

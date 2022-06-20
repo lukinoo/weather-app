@@ -1,16 +1,19 @@
 <template>
-  <div class="weather-box">
+  <div class="weather-box" v-if="typeof weather.main != 'undefined'">
     <div class="weather-box-item">
       <div class="weather-box-item-date">
         <p>{{ weather.name }}, {{ weather.country }}</p>
         <p>{{ fullDate }}</p>
       </div>
       <div class="weather-box-item-icon">
-        <img src="../assets/cloudy.svg" alt="weather" />
+        <img
+          :src="require(`../assets/${imageHandler(weather.main)}`)"
+          alt="weather"
+        />
       </div>
       <div class="weather-box-item-info">
         <h3 class="info">{{ weather.main }}</h3>
-        <div class="celsius">{{ Math.round(weather.temp) }} <sup>o</sup></div>
+        <div class="celsius">{{ weather.temp }} <sup>o</sup></div>
       </div>
     </div>
   </div>
@@ -31,9 +34,31 @@ export default defineComponent({
   },
   setup() {
     const fullDate = ref<string>(getDate());
+    const imageHandler = (main: string): string => {
+      let image = "";
+
+      if (main == "Clouds") {
+        image = "cloudy.svg";
+      } else if (main == "Thunderstorm") {
+        image = "thunder.svg";
+      } else if (main == "Drizzle") {
+        image = "drizzle.svg";
+      } else if (main == "Rain") {
+        image = "rainy.svg";
+      } else if (main == "Clear") {
+        image = "day.svg";
+      } else if (main == "Snow") {
+        image = "snowy.svg";
+      } else {
+        image = "weather.svg";
+      }
+
+      return image;
+    };
 
     return {
       fullDate,
+      imageHandler,
     };
   },
 });
